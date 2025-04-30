@@ -1,5 +1,6 @@
 # lambdahttp
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/tjamet/lambdahttp.svg)](https://pkg.go.dev/github.com/tjamet/lambdahttp)
 [![Test](https://github.com/tjamet/lambdahttp/actions/workflows/ci.yml/badge.svg)](https://github.com/tjamet/lambdahttp/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tjamet/lambdahttp)](https://goreportcard.com/report/github.com/tjamet/lambdahttp)
 
