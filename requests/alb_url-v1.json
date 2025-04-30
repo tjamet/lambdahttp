@@ -1,0 +1,28 @@
+{
+  "body": "cmVxdWVzdC1ib2R5",
+  "headers": {
+    "accept": "*/*",
+    "authorization": "Basic dXNlcjpyZWRhY3RlZA==",
+    "content-length": "12",
+    "content-type": "application/x-www-form-urlencoded",
+    "host": "rest-api-alb-458623877.eu-west-3.elb.amazonaws.com",
+    "some-header": "value-2",
+    "user-agent": "curl/8.7.1",
+    "x-amzn-trace-id": "Root=1-68129795-0c175b5204a0f3897e67038c",
+    "x-forwarded-for": "0.0.0.0",
+    "x-forwarded-port": "80",
+    "x-forwarded-proto": "http",
+    "x-header": "value1,value2"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": true,
+  "path": "/v1/some/path",
+  "queryStringParameters": {
+    "some": "query"
+  },
+  "requestContext": {
+    "elb": {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:eu-west-3:486240610831:targetgroup/rest-api-tg/8abc1c56ebd74718"
+    }
+  }
+}

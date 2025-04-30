@@ -1,0 +1,38 @@
+version: "2"
+linters:
+  enable:
+    - govet        # Examines Go source code and reports suspicious constructs
+    - staticcheck  # Applies a ton of static analysis checks
+    - ineffassign  # Detects unused assignments
+    - unused       # Checks for unused constants, variables, functions and types
+    - misspell     # Finds commonly misspelled English words
+    - gocyclo      # Checks cyclomatic complexity
+    - gosec        # Inspects source code for security problems
+    - bodyclose    # Checks whether HTTP response body is closed
+    - errcheck     # Checks for unchecked errors
+    - revive       # Fast, configurable, extensible linter (golint replacement)
+    - whitespace   # Checks for unnecessary whitespace
+
+issues:
+  max-issues-per-linter: 50
+  max-same-issues: 3
+  fix: false
+  
+severity:
+  default: "error"
+  rules:
+    - severity: info
+      path: _test\.go
+      linters:
+        - gosec
+        - errcheck
+    - severity: info
+      path: _test\.go
+      text: "G304: Potential file inclusion via variable"
+      linters:
+        - gosec
+
+run:
+  tests: true
+  timeout: 5m
+
