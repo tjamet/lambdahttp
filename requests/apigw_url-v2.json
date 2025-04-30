@@ -1,0 +1,46 @@
+{
+  "body": "cmVxdWVzdC1ib2R5",
+  "headers": {
+    "accept": "*/*",
+    "authorization": "Basic dXNlcjpyZWRhY3RlZA==",
+    "content-length": "12",
+    "content-type": "application/x-www-form-urlencoded",
+    "host": "hes9g12wu3.execute-api.eu-west-3.amazonaws.com",
+    "some-header": "value-1,value-2",
+    "user-agent": "curl/8.7.1",
+    "x-amzn-trace-id": "Root=1-68129799-38a4c12f7e9f9b60436a648e",
+    "x-forwarded-for": "0.0.0.0",
+    "x-forwarded-port": "443",
+    "x-forwarded-proto": "https",
+    "x-header": "value1,value2"
+  },
+  "isBase64Encoded": true,
+  "pathParameters": {
+    "path": "some/path"
+  },
+  "queryStringParameters": {
+    "some": "query"
+  },
+  "rawPath": "/v2/some/path",
+  "rawQueryString": "some=query",
+  "requestContext": {
+    "accountId": "486240610831",
+    "apiId": "hes9g12wu3",
+    "domainName": "hes9g12wu3.execute-api.eu-west-3.amazonaws.com",
+    "domainPrefix": "hes9g12wu3",
+    "http": {
+      "method": "POST",
+      "path": "/v2/some/path",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "0.0.0.0",
+      "userAgent": "curl/8.7.1"
+    },
+    "requestId": "J2yf-h_wCGYEMlA=",
+    "routeKey": "ANY /v2/{path+}",
+    "stage": "$default",
+    "time": "30/Apr/2025:21:35:21 +0000",
+    "timeEpoch": 1746048921012
+  },
+  "routeKey": "ANY /v2/{path+}",
+  "version": "2.0"
+}

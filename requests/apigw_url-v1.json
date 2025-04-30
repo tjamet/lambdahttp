@@ -1,0 +1,104 @@
+{
+  "body": "cmVxdWVzdC1ib2R5",
+  "headers": {
+    "Content-Length": "12",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "hes9g12wu3.execute-api.eu-west-3.amazonaws.com",
+    "User-Agent": "curl/8.7.1",
+    "X-Amzn-Trace-Id": "Root=1-68129796-197f15c135d149a21a330955",
+    "X-Forwarded-For": "0.0.0.0",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https",
+    "accept": "*/*",
+    "authorization": "Basic dXNlcjpyZWRhY3RlZA==",
+    "some-header": "value-2",
+    "x-header": "value1,value2"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": true,
+  "multiValueHeaders": {
+    "Content-Length": [
+      "12"
+    ],
+    "Content-Type": [
+      "application/x-www-form-urlencoded"
+    ],
+    "Host": [
+      "hes9g12wu3.execute-api.eu-west-3.amazonaws.com"
+    ],
+    "User-Agent": [
+      "curl/8.7.1"
+    ],
+    "X-Amzn-Trace-Id": [
+      "Root=1-68129796-197f15c135d149a21a330955"
+    ],
+    "X-Forwarded-For": [
+      "0.0.0.0"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ],
+    "accept": [
+      "*/*"
+    ],
+    "authorization": [
+      "Basic dXNlcjpyZWRhY3RlZA=="
+    ],
+    "some-header": [
+      "value-1",
+      "value-2"
+    ],
+    "x-header": [
+      "value1,value2"
+    ]
+  },
+  "multiValueQueryStringParameters": {
+    "some": [
+      "query"
+    ]
+  },
+  "path": "/v1/some/path",
+  "pathParameters": {
+    "path": "some/path"
+  },
+  "queryStringParameters": {
+    "some": "query"
+  },
+  "requestContext": {
+    "accountId": "486240610831",
+    "apiId": "hes9g12wu3",
+    "domainName": "hes9g12wu3.execute-api.eu-west-3.amazonaws.com",
+    "domainPrefix": "hes9g12wu3",
+    "extendedRequestId": "J2yfkgfviGYEMJw=",
+    "httpMethod": "POST",
+    "identity": {
+      "accessKey": null,
+      "accountId": null,
+      "caller": null,
+      "cognitoAmr": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityId": null,
+      "cognitoIdentityPoolId": null,
+      "principalOrgId": null,
+      "sourceIp": "0.0.0.0",
+      "user": null,
+      "userAgent": "curl/8.7.1",
+      "userArn": null
+    },
+    "path": "/v1/some/path",
+    "protocol": "HTTP/1.1",
+    "requestId": "J2yfkgfviGYEMJw=",
+    "requestTime": "30/Apr/2025:21:35:18 +0000",
+    "requestTimeEpoch": 1746048918402,
+    "resourceId": "ANY /v1/{path+}",
+    "resourcePath": "/v1/{path+}",
+    "stage": "$default"
+  },
+  "resource": "/v1/{path+}",
+  "stageVariables": null,
+  "version": "1.0"
+}
