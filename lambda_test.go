@@ -26,7 +26,7 @@ func TestHandlers(t *testing.T) {
 				assert.NoError(t, fd.Close())
 			}()
 
-			req := map[string]interface{}{}
+			req := LambdaRequest{}
 			require.NoError(t, json.NewDecoder(fd).Decode(&req))
 
 			handler := NewAWSLambdaHTTPHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

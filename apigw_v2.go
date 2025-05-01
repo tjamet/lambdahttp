@@ -7,18 +7,20 @@ import (
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/aws/aws-lambda-go/events"
 )
 
 // newHTTPRequestFromAPIGWv2 creates a new http.Request from an API Gateway v2 event
-func newHTTPRequestFromAPIGWv2(req map[string]interface{}) (*http.Request, error) {
-	requestContext := req["requestContext"].(map[string]interface{})
+func newHTTPRequestFromAPIGWv2(req *events.APIGatewayV2HTTPRequest) (*http.Request, error) {
+	requestContext := req.RequestContext
 
 	// Get the HTTP method from the request context
-	httpMethod := requestContext["http"].(map[string]interface{})["method"].(string)
+	httpMethod := requestContext.HTTP.Method
 
 	// Get the raw path and query string
-	rawPath := req["rawPath"].(string)
-	rawQueryString := req["rawQueryString"].(string)
+	rawPath := req.RawPath
+	rawQueryString := req.RawQueryString
 
 	// Construct the full URL
 	fullURL := rawPath
@@ -28,15 +30,15 @@ func newHTTPRequestFromAPIGWv2(req map[string]interface{}) (*http.Request, error
 
 	// Get the request body if present
 	var body io.Reader
-	if rawBody, ok := req["body"].(string); ok {
-		if isBase64Encoded, ok := req["isBase64Encoded"].(bool); ok && isBase64Encoded {
-			decodedBody, err := base64.StdEncoding.DecodeString(rawBody)
+	if req.Body != "" {
+		if req.IsBase64Encoded {
+			decodedBody, err := base64.StdEncoding.DecodeString(req.Body)
 			if err != nil {
 				return nil, fmt.Errorf("failed to decode base64 body: %v", err)
 			}
 			body = bytes.NewReader(decodedBody)
 		} else {
-			body = bytes.NewReader([]byte(rawBody))
+			body = bytes.NewReader([]byte(req.Body))
 		}
 	}
 
@@ -47,14 +49,9 @@ func newHTTPRequestFromAPIGWv2(req map[string]interface{}) (*http.Request, error
 	}
 
 	// Set the headers
-	if headers, ok := req["headers"].(map[string]interface{}); ok {
-		for key, value := range headers {
-			if strValue, ok := value.(string); ok {
-				fmt.Println("Setting header:", key, strValue)
-				for _, v := range strings.Split(strValue, ",") {
-					httpReq.Header.Add(key, v)
-				}
-			}
+	for key, value := range req.Headers {
+		for _, v := range strings.Split(value, ",") {
+			httpReq.Header.Add(key, v)
 		}
 	}
 
