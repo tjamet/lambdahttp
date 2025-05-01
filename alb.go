@@ -45,21 +45,21 @@ func (r albResponse) GetBody() string {
 }
 
 // newHTTPRequestFromALB creates a new http.Request from an ALB event
-func newHTTPRequestFromALB(req map[string]interface{}) (*http.Request, error) {
-	method := req["httpMethod"].(string)
-	path := req["path"].(string)
+func newHTTPRequestFromALB(req *events.ALBTargetGroupRequest) (*http.Request, error) {
+	method := req.HTTPMethod
+	path := req.Path
 
 	// Build query string
 	queryParams := ""
-	if qp, ok := req["queryStringParameters"].(map[string]interface{}); ok && len(qp) > 0 {
+	if len(req.QueryStringParameters) > 0 {
 		values := url.Values{}
-		for k, v := range qp {
-			values.Add(k, v.(string))
+		for k, v := range req.QueryStringParameters {
+			values.Add(k, v)
 		}
 		queryParams = "?" + values.Encode()
 	}
 
-	proto := req["headers"].(map[string]interface{})["x-forwarded-proto"].(string)
+	proto := req.Headers["x-forwarded-proto"]
 	if proto == "" {
 		proto = "http"
 	}
@@ -67,13 +67,13 @@ func newHTTPRequestFromALB(req map[string]interface{}) (*http.Request, error) {
 	// Create request URL
 	reqURL := fmt.Sprintf("%s://%s%s%s",
 		proto,
-		req["headers"].(map[string]interface{})["host"].(string),
+		req.Headers["host"],
 		path,
 		queryParams)
 
 	var body io.Reader
-	if b64Body, ok := req["body"].(string); ok && req["isBase64Encoded"].(bool) {
-		decodedBody, err := base64.StdEncoding.DecodeString(b64Body)
+	if req.IsBase64Encoded {
+		decodedBody, err := base64.StdEncoding.DecodeString(req.Body)
 		if err != nil {
 			return nil, fmt.Errorf("failed to decode base64 body: %v", err)
 		}
@@ -86,9 +86,8 @@ func newHTTPRequestFromALB(req map[string]interface{}) (*http.Request, error) {
 	}
 
 	// Add headers
-	headers := req["headers"].(map[string]interface{})
-	for k, v := range headers {
-		for _, v := range strings.Split(v.(string), ",") {
+	for k, v := range req.Headers {
+		for _, v := range strings.Split(v, ",") {
 			httpReq.Header.Add(k, v)
 		}
 	}
