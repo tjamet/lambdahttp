@@ -35,12 +35,16 @@ func newHTTPRequestFromAPIGWv1(req *events.APIGatewayProxyRequest) (*http.Reques
 		queryParams)
 
 	var body io.Reader
-	if req.IsBase64Encoded {
-		decodedBody, err := base64.StdEncoding.DecodeString(req.Body)
-		if err != nil {
-			return nil, fmt.Errorf("failed to decode base64 body: %v", err)
+	if req.Body != "" {
+		if req.IsBase64Encoded {
+			decodedBody, err := base64.StdEncoding.DecodeString(req.Body)
+			if err != nil {
+				return nil, fmt.Errorf("failed to decode base64 body: %v", err)
+			}
+			body = bytes.NewReader(decodedBody)
+		} else {
+			body = strings.NewReader(req.Body)
 		}
-		body = bytes.NewReader(decodedBody)
 	}
 
 	httpReq, err := http.NewRequest(method, reqURL, body)
