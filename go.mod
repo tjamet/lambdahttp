@@ -1,11 +1,9 @@
 module github.com/tjamet/lambdahttp
 
-go 1.21
-
+go 1.22
 
 require (
 	github.com/aws/aws-lambda-go v1.48.0
-	github.com/google/go-cmp v0.7.0
 	github.com/stretchr/testify v1.10.0
 )
 
