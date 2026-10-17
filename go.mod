@@ -3,7 +3,7 @@ module github.com/tjamet/lambdahttp
 go 1.27
 
 require (
-	github.com/aws/aws-lambda-go v1.51.2
+	github.com/aws/aws-lambda-go v1.52.0
 	github.com/stretchr/testify v1.10.0
 )
 
